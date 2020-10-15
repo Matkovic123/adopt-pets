@@ -3,7 +3,7 @@
     <h1>Cats for adoption</h1>
     <b-table striped hover :items="cats">
       <template v-slot:cell(name)="data">
-        <router-link :to="`/pets/${data.value.toLowerCase()}`">
+        <router-link :to="`/pets/${data.index}`">
           {{ data.value }}
         </router-link>
       </template>
@@ -12,14 +12,17 @@
 </template>
 
 <script>
-import cats from '@/data/cats'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Cats',
   data () {
-    return {
-      cats // same as cats: cats
-    }
+    return {}
+  },
+  computed: {
+    ...mapState([
+      'cats'
+    ])
   }
 }
 
